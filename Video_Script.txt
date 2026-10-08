@@ -1,0 +1,37 @@
+Slide 1
+Welcome. Our group presents a smart fan speed controller for the Fuzzy Logic and Genetic Programming subject at L. D. College of Engineering, Ahmedabad. We are four Chemical Engineering students from Division A. This project is a software simulation.
+
+Slide 2
+Manual fan adjustment requires attention as room conditions change. A simple temperature threshold ignores humidity. We use two inputs to create an interpretable fan command. The fan provides airflow. We do not claim that it removes humidity or lowers the room temperature.
+
+Slide 3
+Our objectives are to define fuzzy sets, build nine understandable rules, implement the controller, and test its response. A separate genetic programming experiment learns an approximation of simulated fuzzy outputs. We report model limitations instead of claiming measured energy savings.
+
+Slide 4
+Temperature ranges from fifteen to forty degrees Celsius. Relative humidity ranges from twenty to ninety percent. The output is a normalized fan command from zero to one hundred percent. We validate, fuzzify, evaluate rules, aggregate consequents, and calculate the centroid. Hardware integration remains future work.
+
+Slide 5
+Each variable has low, medium and high triangular memberships. Shoulder sets cover the ends of the domain. A reading can belong partly to more than one set. These degrees are memberships, not probabilities. The thresholds are illustrative classroom design choices.
+
+Slide 6
+The table contains nine rules. Each row is a temperature set and each column is a humidity set. For example, medium temperature and high humidity request high fan speed. High temperature requests high speed at every humidity level. Every rule has equal weight.
+
+Slide 7
+The main implementation uses NumPy, so scikit fuzzy is not required. AND takes the minimum membership. Each output set is clipped at its rule strength. Maximum combines all clipped sets. Trapezoidal integration calculates the output centroid on a zero point one percentage point grid. Invalid inputs raise an error.
+
+Slide 8
+At thirty degrees, medium temperature membership is zero point seven five. At eighty percent humidity, high membership is zero point six. The strongest rule clips the high output at zero point six. Medium output also activates at zero point two. Their aggregated centroid gives a seventy three point one one three percent fan command.
+
+Slide 9
+The examples span cool, moderate and warm conditions. Twenty eight degrees and sixty percent humidity gives fifty percent. Forty degrees and ninety percent gives about eighty three point three three percent. A shoulder output reaches its centroid inside its support, so the command does not reach one hundred percent.
+
+Slide 10
+All one thousand four hundred and seventy nine validation points returned finite bounded outputs. The response is continuous, but it has small local decreases. On our test grid the largest temperature step decrease is one point three six percentage points. The largest humidity step decrease is two point three nine points. The report explains these centroid effects.
+
+Slide 11
+Genetic programming evolves expression trees using addition, subtraction, multiplication, minimum and maximum. We use one hundred trees for forty generations with a fixed seed. Eighty five samples train the model and thirty six are held out. Test error is nine point four three one percentage points against the simulated fuzzy target. This experiment does not optimize real comfort.
+
+Slide 12
+The project demonstrates an explainable fuzzy controller and an actual genetic programming approximation. Our deliverables include reproducible code, graphs, a report, and this presentation. Future work includes monotonic response tuning and hardware calibration. Public repository, LinkedIn and video links will be added after the group uploads the files. Thank you.
+
+Voice: Microsoft Zira, synthetic English narration. Caption timing follows approximate word chunks.

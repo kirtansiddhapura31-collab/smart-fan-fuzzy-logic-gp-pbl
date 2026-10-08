@@ -1,0 +1,183 @@
+1
+00:00:00,000 --> 00:00:05,944
+Welcome. Our group presents a smart fan speed controller for the Fuzzy Logic and
+
+2
+00:00:05,944 --> 00:00:11,888
+Genetic Programming subject at L. D. College of Engineering, Ahmedabad. We are four Chemical
+
+3
+00:00:11,888 --> 00:00:17,831
+Engineering students from Division A. This project is a software simulation.
+
+4
+00:00:17,831 --> 00:00:24,428
+Manual fan adjustment requires attention as room conditions change. A simple temperature threshold ignores
+
+5
+00:00:24,428 --> 00:00:31,025
+humidity. We use two inputs to create an interpretable fan command. The fan provides
+
+6
+00:00:31,025 --> 00:00:37,622
+airflow. We do not claim that it removes humidity or lowers the room temperature.
+
+7
+00:00:37,622 --> 00:00:44,334
+Our objectives are to define fuzzy sets, build nine understandable rules, implement the controller,
+
+8
+00:00:44,334 --> 00:00:51,046
+and test its response. A separate genetic programming experiment learns an approximation of simulated
+
+9
+00:00:51,046 --> 00:00:57,758
+fuzzy outputs. We report model limitations instead of claiming measured energy savings.
+
+10
+00:00:57,758 --> 00:01:03,884
+Temperature ranges from fifteen to forty degrees Celsius. Relative humidity ranges from twenty to
+
+11
+00:01:03,884 --> 00:01:10,010
+ninety percent. The output is a normalized fan command from zero to one hundred
+
+12
+00:01:10,010 --> 00:01:16,136
+percent. We validate, fuzzify, evaluate rules, aggregate consequents, and calculate the centroid. Hardware integration
+
+13
+00:01:16,136 --> 00:01:22,263
+remains future work.
+
+14
+00:01:22,263 --> 00:01:28,806
+Each variable has low, medium and high triangular memberships. Shoulder sets cover the ends
+
+15
+00:01:28,806 --> 00:01:35,350
+of the domain. A reading can belong partly to more than one set. These
+
+16
+00:01:35,350 --> 00:01:41,894
+degrees are memberships, not probabilities. The thresholds are illustrative classroom design choices.
+
+17
+00:01:41,894 --> 00:01:46,630
+The table contains nine rules. Each row is a temperature set and each column
+
+18
+00:01:46,630 --> 00:01:51,367
+is a humidity set. For example, medium temperature and high humidity request high fan
+
+19
+00:01:51,367 --> 00:01:56,103
+speed. High temperature requests high speed at every humidity level. Every rule has equal
+
+20
+00:01:56,103 --> 00:02:00,840
+weight.
+
+21
+00:02:00,840 --> 00:02:06,857
+The main implementation uses NumPy, so scikit fuzzy is not required. AND takes the
+
+22
+00:02:06,857 --> 00:02:12,875
+minimum membership. Each output set is clipped at its rule strength. Maximum combines all
+
+23
+00:02:12,875 --> 00:02:18,892
+clipped sets. Trapezoidal integration calculates the output centroid on a zero point one percentage
+
+24
+00:02:18,892 --> 00:02:24,910
+point grid. Invalid inputs raise an error.
+
+25
+00:02:24,910 --> 00:02:31,030
+At thirty degrees, medium temperature membership is zero point seven five. At eighty percent
+
+26
+00:02:31,030 --> 00:02:37,150
+humidity, high membership is zero point six. The strongest rule clips the high output
+
+27
+00:02:37,150 --> 00:02:43,270
+at zero point six. Medium output also activates at zero point two. Their aggregated
+
+28
+00:02:43,270 --> 00:02:49,391
+centroid gives a seventy three point one one three percent fan command.
+
+29
+00:02:49,391 --> 00:02:54,838
+The examples span cool, moderate and warm conditions. Twenty eight degrees and sixty percent
+
+30
+00:02:54,838 --> 00:03:00,286
+humidity gives fifty percent. Forty degrees and ninety percent gives about eighty three point
+
+31
+00:03:00,286 --> 00:03:05,734
+three three percent. A shoulder output reaches its centroid inside its support, so the
+
+32
+00:03:05,734 --> 00:03:11,181
+command does not reach one hundred percent.
+
+33
+00:03:11,181 --> 00:03:16,283
+All one thousand four hundred and seventy nine validation points returned finite bounded outputs.
+
+34
+00:03:16,283 --> 00:03:21,385
+The response is continuous, but it has small local decreases. On our test grid
+
+35
+00:03:21,385 --> 00:03:26,487
+the largest temperature step decrease is one point three six percentage points. The largest
+
+36
+00:03:26,487 --> 00:03:31,589
+humidity step decrease is two point three nine points. The report explains these centroid
+
+37
+00:03:31,589 --> 00:03:36,691
+effects.
+
+38
+00:03:36,691 --> 00:03:41,874
+Genetic programming evolves expression trees using addition, subtraction, multiplication, minimum and maximum. We use
+
+39
+00:03:41,874 --> 00:03:47,057
+one hundred trees for forty generations with a fixed seed. Eighty five samples train
+
+40
+00:03:47,057 --> 00:03:52,240
+the model and thirty six are held out. Test error is nine point four
+
+41
+00:03:52,240 --> 00:03:57,423
+three one percentage points against the simulated fuzzy target. This experiment does not optimize
+
+42
+00:03:57,423 --> 00:04:02,606
+real comfort.
+
+43
+00:04:02,606 --> 00:04:09,234
+The project demonstrates an explainable fuzzy controller and an actual genetic programming approximation. Our
+
+44
+00:04:09,234 --> 00:04:15,861
+deliverables include reproducible code, graphs, a report, and this presentation. Future work includes monotonic
+
+45
+00:04:15,861 --> 00:04:22,488
+response tuning and hardware calibration. Public repository, LinkedIn and video links will be added
+
+46
+00:04:22,488 --> 00:04:29,116
+after the group uploads the files. Thank you.
